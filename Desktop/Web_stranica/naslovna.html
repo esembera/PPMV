@@ -65,31 +65,15 @@
         
                 
         <script>
-        
+        //KAD HOCU OVO DODAT DA PROBAM DOBIT VRIJEDNOST GUMBA KOJI JE STISNUT PRESTANE RADIT STRANICA, NE ODMAH IZ PRVE ALI KAD KRENES KORISTIT vrAuta KAO VARIJABLU ZA DALJNJE RAČUNANJE
               /*var checked_gumb = document.querySelector('input[name=radio1]:checked');
             if checked_gumb != null) {
-                var vrAuta = checked_gumb.nodeValue;
+                var vrAuta = checked_gumb.value;
             }*/
         
         </script>
         
         <script>
-        /*function nabaviCijenu()
-        {
-            var theForm = document.forms["autoinfo"];
-            var cijena = forma.elements["cijena"];
-            var koliko = 0;
-            if(cijena.value!=""){
-                koliko=parseInt(cijena.value);
-                console.log(koliko);
-            }
-            return koliko;
-        }
-        
-        function getTotal(){
-            var ukCijena= nabaviCijenu();
-            document.getElementById('cost').innerHTML="ukupni porez" + ukCijena;
-        }*/
 
             var auti = new Array();
             auti["dizel"]=4;
@@ -115,9 +99,7 @@
             var vn=0;
             var en=0;
             var pc=0.0
-            //var pp=0;
             var posto=0.0;
-           // if(ispusniPlinovi>100000 && ispusniPlinovi<150000)
             
                 if(cijenaAuta<=100000){
                     vn=0;
@@ -175,7 +157,6 @@
             var pp=(vn+pc);
                     
           document.getElementById('cost').innerHTML = pp + "kn";      
-        //$('#cost').html(cijenaAuta + ispusniPlinovi + " kn"); // add them and output it
             });
         </script>
         
