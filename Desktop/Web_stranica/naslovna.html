@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+
+<html>
+<head>
+    <link rel="stylesheet" href="dizajn.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<title>Uvoz Automobila</title>
+</head>
+<body>
+    <div class="glavni">
+<h1>Automatski izračun PPMV-a</h1>
+    <div class="forma">
+        <div class="link">
+                <input id="k1" type="url" name="link" placeholder="Link oglasa"><br><br>
+                <input id="g1" type="submit" value="Izračunaj PPMV">
+        </div>
+            <br>
+        <form id="autoinfo" >
+        <div class="forma1">
+            <div class="gumbi1">
+                <input type="radio" name="radio" id="radio1" value="radio1" onClick="getTotal()" style="display: none;"/>
+                <label  for="radio1" class="prvi">NOVO VOZILO</label>
+                <input type="radio" name="radio" id="radio2" value="radio2" onClick="getTotal()" style="display: none;"/>
+                <label  for="radio2" class="prvi">RABLJENO VOZILO</label>
+            </div>
+                <br>
+            <div id="gumbi2">
+                <input type="radio" name="radio1" id="radio3" value="1" onClick="getVrsta(this.id)" style="display: none;" />
+                <label  for="radio3" class="drugi">DIZEL</label>
+                <input type="radio" name="radio1" id="radio4" value="2" onClick="getVrsta(this.id)" style="display: none;"/>
+                <label  for="radio4" class="drugi">BENZIN</label>
+            </div>
+            <br>
+            
+            <div class="cijena1">
+                <p1>Prosječna emisija CO<sub>2</sub></p1>
+                <div class="co21">
+                    <input id="co2" type="number" name="co2" placeholder="120" required><span class="slova1">g/km</span>    
+                </div>
+                </div>
+            <br>
+            <div class="cijena1">
+            <p1>Prodajna cijena na dan prve registracije:</p1>
+                <div class="cijena2">
+                <input id="cijena" type="number" name="cijena" placeholder="100.000,00" required><span class="slova1">kn</span>
+                </div>
+            </div>
+            <br>
+            <div class="cijena1">
+            <p1>Mjesec i godina prve registracije</p1>
+                <div class="kalendar">
+                    <input type="month" id="dropdown2" name="prvareg" required>
+                </div>
+                <br>
+            <div class="cijena1">
+                <p1>Iznos posebnog poreza na motorna vozila:</p1><br>
+                <div id="cost">00.00kn</div>
+                </div>
+            </div>
+        </div>
+        </form>
+     </div>
+        
+        
+                
+        <script>
+        
+              /*var checked_gumb = document.querySelector('input[name=radio1]:checked');
+            if checked_gumb != null) {
+                var vrAuta = checked_gumb.nodeValue;
+            }*/
+        
+        </script>
+        
+        <script>
+        /*function nabaviCijenu()
+        {
+            var theForm = document.forms["autoinfo"];
+            var cijena = forma.elements["cijena"];
+            var koliko = 0;
+            if(cijena.value!=""){
+                koliko=parseInt(cijena.value);
+                console.log(koliko);
+            }
+            return koliko;
+        }
+        
+        function getTotal(){
+            var ukCijena= nabaviCijenu();
+            document.getElementById('cost').innerHTML="ukupni porez" + ukCijena;
+        }*/
+
+            var auti = new Array();
+            auti["dizel"]=4;
+            auti["benzin"]=2;
+            
+        function getAuti(){
+            var autiCijena=0;
+            var theForm=document.forms["autoinfo"];
+            var odabraniAuto = theForm.element["radio1"];
+            for(var i=0;i<odabraniAuto.length; i++){
+                if(odabraniAuto[i].checked){
+                    autiCijena=auti[odabraniAuto[i].value];
+                    break;
+                }
+            }
+           return getAuti();
+        } 
+            
+        $('input').keyup(function() { // run anytime the value changes
+            var cijenaAuta = Number($('#cijena').val());
+            var ispusniPlinovi = Number($('#co2').val());
+            var on=0;
+            var vn=0;
+            var en=0;
+            var pc=0.0
+            //var pp=0;
+            var posto=0.0;
+           // if(ispusniPlinovi>100000 && ispusniPlinovi<150000)
+            
+                if(cijenaAuta<=100000){
+                    vn=0;
+                    posto=0;
+                    pc=(cijenaAuta-0)*(posto/100);    
+                }else if(cijenaAuta>100000 && cijenaAuta<=150000){
+                    vn=0;
+                    posto=0;
+                    pc=(cijenaAuta-100000)*(posto/100);
+                }else if( cijenaAuta>150000 && cijenaAuta<=200000){
+                    vn=2000;
+                    posto=0.03;
+                    pc=(cijenaAuta-150000)*(posto/100);
+                }else if( cijenaAuta>200000 && cijenaAuta<=250000){
+                    vn=3500;
+                    posto=5;
+                    pc=(cijenaAuta-200000)*(posto/100);
+                }else if( cijenaAuta>250000 && cijenaAuta<=300000){
+                    vn=6000;
+                    posto=7;
+                    pc=(cijenaAuta-250000)*(posto/100);
+                }else if( cijenaAuta>300000 && cijenaAuta<=350000){
+                    vn=9500;
+                    posto=9;
+                    pc=(cijenaAuta-300000)*(posto/100);
+                }else if( cijenaAuta>350000 && cijenaAuta<=400000){
+                    vn=14000;
+                    posto=11;
+                    pc=(cijenaAuta-350000)*(posto/100);
+                }else if( cijenaAuta>400000 && cijenaAuta<=450000){
+                    vn=19500;
+                    posto=13;
+                    pc=((cijenaAuta-400000)*(posto/100));
+                }else if( cijenaAuta>450000 && cijenaAuta<=500000){
+                    vn=26000;
+                    posto=14;
+                    pc=(cijenaAuta-450000)*(posto/100);
+                }else if( cijenaAuta>500000 && cijenaAuta<=550000){
+                    vn=33000;
+                    posto=15;
+                    pc=(cijenaAuta-500000)*(posto/100);
+                }else if( cijenaAuta>550000 && cijenaAuta<=600000){
+                    vn=40500;
+                    posto=16;
+                    pc=(cijenaAuta-550000)*(posto/100);
+                }else if( cijenaAuta>600000){
+                    vn=48500;
+                    posto=17;
+                    pc=(cijenaAuta-600000)*(posto/100);
+                }
+            
+            
+            
+            
+            var pp=(vn+pc);
+                    
+          document.getElementById('cost').innerHTML = pp + "kn";      
+        //$('#cost').html(cijenaAuta + ispusniPlinovi + " kn"); // add them and output it
+            });
+        </script>
+        
+        
+
+        
+    </div>
+</body>
+</html>
+
