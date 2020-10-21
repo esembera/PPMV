@@ -19,17 +19,17 @@
         <form id="autoinfo" >
         <div class="forma1">
             <div class="gumbi1">
-                <input type="radio" name="radio" id="radio1" value="radio1" onClick="getTotal()" style="display: none;"/>
+                <input type="radio" name="radio" id="radio1" value="radio1"  style="display: none;"/>
                 <label  for="radio1" class="prvi">NOVO VOZILO</label>
-                <input type="radio" name="radio" id="radio2" value="radio2" onClick="getTotal()" style="display: none;"/>
+                <input type="radio" name="radio" id="radio2" value="radio2"  style="display: none;"/>
                 <label  for="radio2" class="prvi">RABLJENO VOZILO</label>
             </div>
                 <br>
             <div id="gumbi2">
-                <input type="radio" name="radio1" id="radio3" value="1" onClick="getVrsta(this.id)" style="display: none;" />
-                <label  for="radio3" class="drugi">DIZEL</label>
-                <input type="radio" name="radio1" id="radio4" value="2" onClick="getVrsta(this.id)" style="display: none;"/>
-                <label  for="radio4" class="drugi">BENZIN</label>
+                <input type="radio" name="radio1" id="radio3" value="1"  style="display: none;" />
+                <label  for="radio3" class="drugi" >DIZEL</label>
+                <input type="radio" name="radio1" id="radio4" value="2"  style="display: none;"/>
+                <label  for="radio4" class="drugi" >BENZIN</label>
             </div>
             <br>
             
@@ -65,11 +65,22 @@
         
                 
         <script>
-        //KAD HOCU OVO DODAT DA PROBAM DOBIT VRIJEDNOST GUMBA KOJI JE STISNUT PRESTANE RADIT STRANICA, NE ODMAH IZ PRVE ALI KAD KRENES KORISTIT vrAuta KAO VARIJABLU ZA DALJNJE RAČUNANJE
-              /*var checked_gumb = document.querySelector('input[name=radio1]:checked');
-            if checked_gumb != null) {
-                var vrAuta = checked_gumb.value;
-            }*/
+        //APDEJT - uspio sam slozit da radi za gumbe hehehehe
+        var vrAuto
+            $(document).ready(function () {
+                $('#radio3').click(function () {
+                    vrAuto = $(this).val();
+                });
+
+            });
+            
+            $(document).ready(function () {
+                $('#radio4').click(function () {
+                    vrAuto = $(this).val();
+                });
+
+            });
+            
         
         </script>
         
@@ -151,10 +162,62 @@
                     pc=(cijenaAuta-600000)*(posto/100);
                 }
             
+            if(vrAuto==1){
+                if(ispusniPlinovi>=70 && ispusniPlinovi<=90){
+                    on=185;
+                    en=ispusniPlinovi*55;
+                }
+                if(ispusniPlinovi>85 && ispusniPlinovi<=120){
+                    on=1010;
+                    en=ispusniPlinovi*175;
+                }
+                if(ispusniPlinovi>120 && ispusniPlinovi<=140){
+                    on=7135;
+                    en=ispusniPlinovi*1150;
+                }
+                if(ispusniPlinovi>140 && ispusniPlinovi<=170){
+                    on=30135;
+                    en=ispusniPlinovi*1250;
+                }
+                if(ispusniPlinovi>170 && ispusniPlinovi<=200){
+                    on=67635;
+                    en=ispusniPlinovi*1350;
+                }
+                if(ispusniPlinovi>200){
+                    on=108135;
+                    en=ispusniPlinovi*1450;
+                }
+            }
+            
+         if(vrAuto==2){
+                if(ispusniPlinovi>=70 && ispusniPlinovi<=90){
+                    on=95;
+                    en=ispusniPlinovi*35;
+                }
+                if(ispusniPlinovi>85 && ispusniPlinovi<=120){
+                    on=620;
+                    en=ispusniPlinovi*135;
+                }
+                if(ispusniPlinovi>120 && ispusniPlinovi<=140){
+                    on=4670;
+                    en=ispusniPlinovi*450;
+                }
+                if(ispusniPlinovi>140 && ispusniPlinovi<=170){
+                    on=13670;
+                    en=ispusniPlinovi*700;
+                }
+                if(ispusniPlinovi>170 && ispusniPlinovi<=200){
+                    on=34670;
+                    en=ispusniPlinovi*1200;
+                }
+                if(ispusniPlinovi>200){
+                    on=70670;
+                    en=ispusniPlinovi*1300;
+                }
+            }
             
             
-            
-            var pp=(vn+pc);
+            var pp=(vn+pc)+(on+en);
                     
           document.getElementById('cost').innerHTML = pp + "kn";      
             });
