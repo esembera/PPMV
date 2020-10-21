@@ -133,10 +133,9 @@ p1{
 }
 label { 
     display:inline-block;
-    width:145px; height:50px;
+    width:150px; height:50px;
     margin: 0 20px;
     background-color: white;
-    text-align: center;
     cursor: pointer;
     border-radius: 15px;
     
@@ -165,4 +164,18 @@ input:checked + label { background-color: darkgray; color:white;}
 #valueCost {
     display: table-row;
 }
+
+.gumbi1 {
+    text-align:center;
+    line-height: 310%;
+    font-size: .95em;
+}
+
+#gumbi2 {
+    text-align: center;
+    line-height: 310%;
+    font-size: .95em;
+}
+
+
 

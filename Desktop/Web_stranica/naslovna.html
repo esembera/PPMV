@@ -24,11 +24,11 @@
                 <input type="radio" name="radio" id="radio2" value="radio2"  style="display: none;"/>
                 <label  for="radio2" class="prvi">RABLJENO VOZILO</label>
             </div>
-                <br>
+            <br>
             <div id="gumbi2">
-                <input type="radio" name="radio1" id="radio3" value="1"  style="display: none;" />
+                <input type="radio" name="radio1" id="radio3" value="1" onchange="funkcija()" style="display: none;" />
                 <label  for="radio3" class="drugi" >DIZEL</label>
-                <input type="radio" name="radio1" id="radio4" value="2"  style="display: none;"/>
+                <input type="radio" name="radio1" id="radio4" value="2" onchange="funkcija()" style="display: none;"/>
                 <label  for="radio4" class="drugi" >BENZIN</label>
             </div>
             <br>
@@ -89,25 +89,10 @@
         </script>
         
         <script>
-
-            var auti = new Array();
-            auti["dizel"]=4;
-            auti["benzin"]=2;
             
-        function getAuti(){
-            var autiCijena=0;
-            var theForm=document.forms["autoinfo"];
-            var odabraniAuto = theForm.element["radio1"];
-            for(var i=0;i<odabraniAuto.length; i++){
-                if(odabraniAuto[i].checked){
-                    autiCijena=auti[odabraniAuto[i].value];
-                    break;
-                }
-            }
-           return getAuti();
-        } 
+        $('input').keyup(funkcija);
             
-        $('input').keyup(function() { // run anytime the value changes
+        function funkcija() { 
             var cijenaAuta = Number($('#cijena').val());
             var ispusniPlinovi = Number($('#co2').val());
             var on=0;
@@ -193,7 +178,7 @@
                 }
             }
             
-         if(vrAuto==2){
+            if(vrAuto==2){
                 if(ispusniPlinovi>=70 && ispusniPlinovi<=90){
                     on=95;
                     en=(ispusniPlinovi-70)*35;
@@ -223,15 +208,12 @@
             
             var pp=(vn+pc)+(on+en);
                     
-        document.getElementById('cost').innerHTML = pp + "kn"; 
-        document.getElementById('ecoCost').innerHTML = (on+en) + "kn";
-        document.getElementById('valueCost').innerHTML = (vn+pc) + "kn";
-            });
+            document.getElementById('cost').innerHTML = pp + "kn"; 
+            document.getElementById('ecoCost').innerHTML = (on+en) + "kn";
+            document.getElementById('valueCost').innerHTML = (vn+pc) + "kn";
+        };
+            
         </script>
-        
-        
-
-        
     </div>
 </body>
 </html>
