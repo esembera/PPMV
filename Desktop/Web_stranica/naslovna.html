@@ -53,9 +53,13 @@
                     <input type="month" id="dropdown2" name="prvareg" required>
                 </div>
                 <br>
-            <div class="cijena1">
+            <div class="cijena3">
                 <p1>Iznos posebnog poreza na motorna vozila:</p1><br>
                 <div id="cost">00.00kn</div>
+                <br>
+                <p2>Ekološka komponenta: <div id="ecoCost">00.00kn</div></p2>
+                <br>
+                <p2>Vrijednosna komponenta: <div id="valueCost">00.00kn</div></p2>
                 </div>
             </div>
         </div>
@@ -122,7 +126,7 @@
                     pc=(cijenaAuta-100000)*(posto/100);
                 }else if( cijenaAuta>150000 && cijenaAuta<=200000){
                     vn=2000;
-                    posto=0.03;
+                    posto=3;
                     pc=(cijenaAuta-150000)*(posto/100);
                 }else if( cijenaAuta>200000 && cijenaAuta<=250000){
                     vn=3500;
@@ -163,63 +167,65 @@
                 }
             
             if(vrAuto==1){
-                if(ispusniPlinovi>=70 && ispusniPlinovi<=90){
+                if(ispusniPlinovi>=70 && ispusniPlinovi<=85){
                     on=185;
-                    en=ispusniPlinovi*55;
+                    en=(ispusniPlinovi-70)*55;
                 }
                 if(ispusniPlinovi>85 && ispusniPlinovi<=120){
                     on=1010;
-                    en=ispusniPlinovi*175;
+                    en=(ispusniPlinovi-85)*175;
                 }
                 if(ispusniPlinovi>120 && ispusniPlinovi<=140){
                     on=7135;
-                    en=ispusniPlinovi*1150;
+                    en=(ispusniPlinovi-120)*1150;
                 }
                 if(ispusniPlinovi>140 && ispusniPlinovi<=170){
                     on=30135;
-                    en=ispusniPlinovi*1250;
+                    en=(ispusniPlinovi-140)*1250;
                 }
                 if(ispusniPlinovi>170 && ispusniPlinovi<=200){
                     on=67635;
-                    en=ispusniPlinovi*1350;
+                    en=(ispusniPlinovi-170)*1350;
                 }
                 if(ispusniPlinovi>200){
                     on=108135;
-                    en=ispusniPlinovi*1450;
+                    en=(ispusniPlinovi-200)*1450;
                 }
             }
             
          if(vrAuto==2){
                 if(ispusniPlinovi>=70 && ispusniPlinovi<=90){
                     on=95;
-                    en=ispusniPlinovi*35;
+                    en=(ispusniPlinovi-70)*35;
                 }
-                if(ispusniPlinovi>85 && ispusniPlinovi<=120){
+                if(ispusniPlinovi>90 && ispusniPlinovi<=120){
                     on=620;
-                    en=ispusniPlinovi*135;
+                    en=(ispusniPlinovi-90)*135;
                 }
                 if(ispusniPlinovi>120 && ispusniPlinovi<=140){
                     on=4670;
-                    en=ispusniPlinovi*450;
+                    en=(ispusniPlinovi-120)*450;
                 }
                 if(ispusniPlinovi>140 && ispusniPlinovi<=170){
                     on=13670;
-                    en=ispusniPlinovi*700;
+                    en=(ispusniPlinovi-140)*700;
                 }
                 if(ispusniPlinovi>170 && ispusniPlinovi<=200){
                     on=34670;
-                    en=ispusniPlinovi*1200;
+                    en=(ispusniPlinovi-170)*1200;
                 }
                 if(ispusniPlinovi>200){
                     on=70670;
-                    en=ispusniPlinovi*1300;
+                    en=(ispusniPlinovi-200)*1300;
                 }
             }
             
             
             var pp=(vn+pc)+(on+en);
                     
-          document.getElementById('cost').innerHTML = pp + "kn";      
+        document.getElementById('cost').innerHTML = pp + "kn"; 
+        document.getElementById('ecoCost').innerHTML = (on+en) + "kn";
+        document.getElementById('valueCost').innerHTML = (vn+pc) + "kn";
             });
         </script>
         

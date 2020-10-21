@@ -149,3 +149,20 @@ input:checked + label { background-color: darkgray; color:white;}
     animation-fill-mode: both;
     cursor: pointer;
 }
+
+.cijena3 {
+    display: table;
+}
+
+.cijena 3 p2 {
+    display: table-cell;
+}
+
+#ecoCost {
+    display: table-row;
+}
+
+#valueCost {
+    display: table-row;
+}
+
